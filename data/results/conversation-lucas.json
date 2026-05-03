@@ -1,0 +1,49 @@
+{
+  "conversation": [
+    {
+      "role": "client",
+      "message": "Oi, vim pelo WhatsApp, queria saber mais sobre o FitFlow"
+    },
+    {
+      "role": "seller",
+      "message": "Oi! Que bom que você veio! 😊 O FitFlow é uma plataforma online de treino e nutrição personalizada, feita com inteligência artificial. Você responde um quiz rapidinho, falando sobre seus objetivos, rotina e restrições alimentares, e a partir disso, a IA monta um plano de treino e um plano alimentar só pra você. \n\nOs treinos podem ser feitas em casa ou na academia, e a cada 2 semanas o plano é reajustado com base no seu progresso. Tem até chat com nutricionista disponível durante a semana! Quer saber mais sobre algum aspecto específico ou os planos?"
+    },
+    {
+      "role": "client",
+      "message": "Oi! Que bom saber mais sobre o FitFlow! 😊 Adorei a ideia da personalização com a inteligência artificial. Eu gostaria de saber mais sobre como funcionam os treinos e se há opções específicas para esportes que eu gosto, como corrida e musculação. Além disso, como é o suporte do nutricionista? É algo que a gente pode usar sempre que precisar?"
+    },
+    {
+      "role": "seller",
+      "message": "Oi! Que legal que você curtiu a ideia! 😃\n\nSobre os treinos, o FitFlow é super flexível. Você pode escolher fazer em casa, sem equipamento, ou na academia. Se você ama corrida e musculação, dá pra adaptar o plano pra incluir essas atividades, só precisa falar no quiz! \n\nQuanto ao suporte do nutricionista, é ilimitado dentro do horário de atendimento, que é de segunda a sexta, das 8h às 18h. O tempo médio de resposta é de uns 30 minutos, então sempre que precisar, pode contar! \n\nTem mais alguma dúvida ou quer saber sobre os planos?"
+    },
+    {
+      "role": "client",
+      "message": "Isso é ótimo! Eu realmente gosto da ideia de treinos adaptáveis. E saber que posso contar com o suporte do nutricionista a qualquer momento é um grande diferencial, principalmente para ajustar a alimentação.\n\nSobre os planos, você pode me passar mais informações sobre os diferentes tipos e preços? Também gostaria de saber se tem algum tipo de avaliação inicial para ver como estou e quais os objetivos a serem trabalhados. 😊"
+    },
+    {
+      "role": "seller",
+      "message": "Com certeza! 😊 \n\nTemos dois planos principais:\n\n### Plano Trimestral (3 meses)\n- **Cartão de crédito:** 3x de R$79,90 (sem juros) = R$239,70\n- **PIX:** R$215,73 à vista (10% de desconto)\n- **Link:** https://fitflow.com.br/checkout/trimestral?cupom=10off\n\n### Plano Anual (12 meses) — Mais Popular\n- **Cartão de crédito:** 12x de R$49,90 (sem juros) = R$598,80\n- **PIX:** R$478,90 à vista (20% de desconto)\n- **Link:** https://fitflow.com.br/checkout/anual?cupom=10off\n\nOs preços já incluem um desconto especial que estou passando pra você! 👍\n\nSobre a avaliação inicial, sim! O quiz que você faz na hora de se inscrever já funciona como uma avaliação. Nele, você vai informar sobre seus objetivos e nível de condicionamento, e aí a IA monta tudo com base nessas informações.\n\nSe precisar de mais alguma coisa, é só avisar!"
+    },
+    {
+      "role": "client",
+      "message": "Ótimo, obrigado pelas informações! 😊 Os preços parecem justos, especialmente com os descontos inclusos. O plano anual parece ser uma boa opção, já que tem um desconto maior.\n\nLegal saber que o quiz já serve como uma avaliação inicial. Estou animado para começar e ver como posso melhorar meu condicionamento físico! \n\nVocês têm alguma opção de teste gratuito ou alguma garantia de satisfação? Sempre fico mais tranquilo sabendo que posso experimentar antes de me comprometer de vez."
+    },
+    {
+      "role": "seller",
+      "message": "Fico feliz que tenha gostado dos preços! 😄 E sim, o plano anual é uma ótima escolha pela economia!\n\nSobre a sua dúvida, temos uma garantia de satisfação de 7 dias. Isso significa que, se você não curtir ou achar que não é pra você, pode pedir reembolso total sem precisar explicar nada. Assim, você pode experimentar tudo sem risco!\n\nSe decidir avançar, é só me avisar que estou aqui pra te ajudar! Se precisar de mais alguma informação, é só perguntar. 😊"
+    },
+    {
+      "role": "client",
+      "message": "Que bom saber dessa garantia de satisfação! Isso realmente ajuda a me sentir mais seguro para testar a plataforma. 😊 \n\nAcho que vou querer seguir em frente com o plano anual! Você pode me ajudar com o processo de inscrição? Tem algum detalhe que eu precise saber antes de finalizar? Estou animado para começar essa jornada de treinos e alimentação! 💪🏽"
+    },
+    {
+      "role": "seller",
+      "message": "Show! Fico muito feliz que você decidiu seguir em frente! 💪🏽\n\nO processo de inscrição é bem tranquilo. Você só precisa acessar o link do plano anual que já tá com o desconto aplicado:\n\n👉🏼 https://fitflow.com.br/checkout/anual?cupom=10off\n\nAo clicar, você vai preencher os dados necessários e escolher a forma de pagamento que preferir (cartão, PIX ou boleto). \n\nLembre-se: o pagamento é único, não renova automaticamente, e a garantia de 7 dias tá com você desde o início! \n\nDepois que finalizar a compra, você vai ter acesso imediato à plataforma e pode começar a responder o quiz e a se exercitar!\n\nSe precisar de mais alguma coisa, tô aqui! Vamos nessa! 😄✨"
+    }
+  ],
+  "metadata": {
+    "totalMessages": 10,
+    "sellerMessages": 5,
+    "clientMessages": 5
+  }
+}

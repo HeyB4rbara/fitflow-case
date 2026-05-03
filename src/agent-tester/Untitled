@@ -1,0 +1,135 @@
+import fs from "fs";
+import path from "path";
+import { config } from "dotenv";
+import OpenAI from "openai";
+
+config();
+
+// Representa uma mensagem na conversa
+type Message = {
+  role: "seller" | "client";
+  message: string;
+};
+
+// Representa o histórico no formato que a OpenAI entende
+type OpenAIMessage = {
+  role: "system" | "user" | "assistant";
+  content: string;
+};
+
+async function simulateConversation(
+  agentPrompt: string,      // prompt completo da Mel
+  clientPrompt: string,     // prompt completo do cliente fictício
+  initialMessage: string,   // primeira mensagem para iniciar a conversa
+  starterRole: "seller" | "client",  // quem manda a primeira mensagem
+  maxMessages: number = 10  // limite de mensagens para a conversa não ficar infinita
+) {
+  const client = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+
+  const conversation: Message[] = [];
+
+  // Histórico de mensagens de cada agente (cada um só vê do seu ponto de vista)
+  const sellerHistory: OpenAIMessage[] = [{ role: "system", content: agentPrompt }];
+  const clientHistory: OpenAIMessage[] = [{ role: "system", content: clientPrompt }];
+
+  console.log(`\n${"=".repeat(50)}`);
+  console.log("Iniciando simulação de conversa...");
+  console.log(`${"=".repeat(50)}\n`);
+
+  // Define quem fala primeiro e quem responde
+  let currentSpeaker = starterRole;
+  let currentMessage = initialMessage;
+
+  for (let i = 0; i < maxMessages; i++) {
+    // Registra a mensagem atual na conversa
+    conversation.push({ role: currentSpeaker, message: currentMessage });
+    console.log(`[${currentSpeaker.toUpperCase()}]: ${currentMessage}\n`);
+
+    // Quem vai responder agora
+    const responderRole = currentSpeaker === "seller" ? "client" : "seller";
+
+    // Adiciona a mensagem recebida no histórico do respondedor
+    if (responderRole === "seller") {
+      // O vendedor recebeu uma mensagem do cliente
+      sellerHistory.push({ role: "user", content: currentMessage });
+    } else {
+      // O cliente recebeu uma mensagem do vendedor
+      clientHistory.push({ role: "user", content: currentMessage });
+    }
+
+    // Gera a resposta do próximo agente
+    const historyToUse = responderRole === "seller" ? sellerHistory : clientHistory;
+
+    const response = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: historyToUse,
+    });
+
+    const replyMessage = response.choices[0].message.content || "";
+
+    // Adiciona a resposta gerada no histórico de quem respondeu
+    if (responderRole === "seller") {
+      sellerHistory.push({ role: "assistant", content: replyMessage });
+    } else {
+      clientHistory.push({ role: "assistant", content: replyMessage });
+    }
+
+    // Prepara para a próxima rodada
+    currentSpeaker = responderRole;
+    currentMessage = replyMessage;
+  }
+
+  // Monta o objeto final com a conversa e os metadados
+  const result = {
+    conversation,
+    metadata: {
+      totalMessages: conversation.length,
+      sellerMessages: conversation.filter((m) => m.role === "seller").length,
+      clientMessages: conversation.filter((m) => m.role === "client").length,
+    },
+  };
+
+  return result;
+}
+
+async function main() {
+  // Lê o prompt da Mel
+  const agentPrompt = fs.readFileSync(
+    path.join(process.cwd(), "data", "agent-prompt.md"),
+    "utf-8"
+  );
+
+  // Lê os clientes gerados na Entrega 1
+  const clientsData = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "data", "results", "clients.json"), "utf-8")
+  );
+
+  // Pega o primeiro cliente para testar
+  const testClient = clientsData.clients[0];
+  console.log(`Testando com o cliente: ${testClient.name}`);
+  console.log(`Perfil: ${testClient.description}`);
+
+  const result = await simulateConversation(
+    agentPrompt,
+    testClient.prompt,
+    "Oi, vim pelo WhatsApp, queria saber mais sobre o FitFlow",
+    "client",  // o cliente manda a primeira mensagem
+    10         // máximo de 10 mensagens
+  );
+
+  // Salva o resultado
+  const outputPath = path.join(
+    process.cwd(),
+    "data",
+    "results",
+    `conversation-${testClient.name.toLowerCase()}.json`
+  );
+  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), "utf-8");
+
+  console.log(`\n✅ Conversa salva em: data/results/conversation-${testClient.name.toLowerCase()}.json`);
+  console.log(`📊 Total de mensagens: ${result.metadata.totalMessages}`);
+}
+
+main().catch(console.error);
