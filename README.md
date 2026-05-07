@@ -4,8 +4,8 @@ Sistema de teste e avaliação do agente de vendas FitFlow.
 
 ## Como instalar e rodar
 
-1. Clone o repositÃ³rio
-2. Instale as dependÃªncias:
+1. Clone o repositorio
+2. Instale as dependencias:
    npm install
 3. Crie o arquivo .env com sua chave:
    OPENAI_API_KEY=sua_chave_aqui
